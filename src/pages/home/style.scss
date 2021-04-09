@@ -2,6 +2,9 @@
 
 * {
   box-sizing: border-box;
+  font-weight: 200;
+  letter-spacing: 0.1rem;
+  // color: #565656;
 }
 
 body {
@@ -16,4 +19,11 @@ body {
 .wrapper {
   width: 100%;
   height: 100%;
+  .main {
+    height: calc(100% - 140px);
+    padding: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }
