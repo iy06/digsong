@@ -10,6 +10,14 @@
   background-color: #f0f3f4;
   box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
   border: 1px solid #ececec;
+  -webkit-transform: scale(1);
+  transform: scale(1);
+  -webkit-transition: .3s ease-in-out;
+  transition: .3s ease-in-out;
+  &:hover {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+  }
   &__data {
     width: 100%;
     height: 50px;
