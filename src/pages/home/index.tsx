@@ -1,9 +1,8 @@
 import React from 'react';
 import './style.scss';
 import { Header } from '../../components/header';
-import { Song } from '../../components/song';
 import { Footer } from '../../components/footer';
-
+import { SongSlider } from '../../components/songslider';
 
 export const Home = () => {
   return (
@@ -11,8 +10,7 @@ export const Home = () => {
       {/* Headerコンポーネント */}
       <Header />
       <div className='main'>
-        {/* Songコンポーネント */}
-        <Song />
+        <SongSlider />
       </div>
       {/* Footerコンポーネント */}
       <Footer />
