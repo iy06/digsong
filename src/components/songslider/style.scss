@@ -1,12 +1,23 @@
 .slick-slider {
   width:  100%;
   height: 100%;
-  // padding: 50px;
-  &-list {
+  .slick-list {
     width: 100%;
     height: 100%;
-    &-track {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .slick-track {
+      padding: 0 50px 0 50px;
       height: 100%;
+      display: flex;
+      justify-content: center;
+      .slick-slide {
+        outline: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
     }
   }
 }

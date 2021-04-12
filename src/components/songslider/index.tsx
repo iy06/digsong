@@ -7,13 +7,11 @@ import 'slick-carousel/slick/slick-theme.css';
 
 export const SongSlider = () => {
   const settings = {
-    className:     "center",
-    dots:          true,
-    centerMode:    true,
-    infinite:      true,
-    centerPadding: "60px",
-    slidesToShow:  3,
-    speed:         500
+    dots:           true,
+    infinite:       true,
+    slidesToShow:   3,
+    slidesToScroll: 3,
+    speed:          500,
   };
 
   return (
