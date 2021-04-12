@@ -9,8 +9,8 @@ export const SongSlider = () => {
   const settings = {
     dots:           true,
     infinite:       true,
-    slidesToShow:   3,
-    slidesToScroll: 3,
+    slidesToShow:   1,
+    slidesToScroll: 1,
     speed:          500,
   };
 
