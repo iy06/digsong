@@ -18,7 +18,7 @@ export const Song = () => {
         </div>
       </div>
 
-      <img className='song__image' src='logo512.png'/>
+      <img className='song__image' src='logo512.png' alt='アルバムの画像'/>
       <h3 className='song__title'>AllOrNothing</h3>
       <audio className='song__bar' controls controlsList='nodownload' preload='meatadata'>
         <source src='AllOrNothing.mp3'/>
