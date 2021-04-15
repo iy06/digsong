@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Header } from '../../components/header';
 import { Footer } from '../../components/footer';
 import { SongSlider } from '../../components/songslider';
@@ -12,14 +12,16 @@ export const Home = () => {
   useEffect (() => {
     const fetchData = async () => {
       const songs = await songRequest( 'fetchSongs' );
-      dispatch({ type: 'songsUpdate', payload: { song: songs } });
+      dispatch({ type: 'songsUpdate', payload: { songs: songs } });
     };
     fetchData();
+    // 警告をなくす
+    // eslint-disable-next-line
   }, []);
   // dataが変わった時のuseEffect
-  useEffect(() => {
-    console.log( data );
-  }, [ data ]);
+  // useEffect(() => {
+  //   console.log( data, 'useEffect!' );
+  // }, [ data ]);
 
   return (
     <div className='wrapper'>
