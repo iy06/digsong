@@ -3,8 +3,8 @@ import { SongType } from '../interfaces/SongType';
 
 // actionの型
 export type dataAction = {
-  type:    'songsUpdate';
-  payload:  { song?: SongType[]; }
+  type:     'songsUpdate';
+  payload:  { songs?: SongType[]; }
 };
 // stateの型
 export type Data = {
@@ -17,11 +17,11 @@ export const useDataReducer = (): [ Data, ( { type, payload }: dataAction ) => v
     songsData: [
       {
         id:        0,
-        title:     '',
-        key:       '',
-        bpm:       '',
-        song_data: {},
-        image:     {},
+        title:     'Sample Music',
+        key:       'Cmaj',
+        bpm:       '120',
+        song_data: '',
+        image:     'logo512.png',
       },
     ],
   };
@@ -29,7 +29,7 @@ export const useDataReducer = (): [ Data, ( { type, payload }: dataAction ) => v
   const reducer = ( state: Data, action: dataAction ) => {
     switch ( action.type ) {
       case 'songsUpdate':
-        return { ...state, songsData: action.payload.song || state.songsData };
+        return { ...state, songsData: action.payload.songs || state.songsData };
     };
   };
   const [ data, dispatch ] = useReducer( reducer, initialData );
