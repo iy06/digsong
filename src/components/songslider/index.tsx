@@ -14,7 +14,7 @@ export const SongSlider = ( props: Props ) => {
   const settings = {
     dots:           true,
     infinite:       true,
-    slidesToShow:   3,
+    slidesToShow:   1,
     slidesToScroll: 1,
     speed:          500,
     responsive: [
@@ -34,7 +34,7 @@ export const SongSlider = ( props: Props ) => {
     <Slider { ...settings }>
       {/* Songコンポーネント */}
       { props.songs.map(( song: SongType ) => {
-        return <Song song={ song }/>
+        return <Song song={ song } key={ song.id }/>
       })}
     </Slider>
   );
