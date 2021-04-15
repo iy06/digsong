@@ -9,7 +9,6 @@ interface Props {
 };
 
 export const Song = ( props: Props ) => {
-  console.log(props.song.image);
   return (
     <div className='song'>
       <div className='song__data'>
@@ -22,11 +21,10 @@ export const Song = ( props: Props ) => {
           <span>{ props.song.bpm }</span>
         </div>
       </div>
-
-      <img className='song__image' src={ props.song.image.filename } alt='アルバムの画像'/>
+      <img className='song__image' src={ props.song.image } alt='アルバムの画像'/>
       <h3 className='song__title'>{ props.song.title }</h3>
-      <audio className='song__bar' controls controlsList='nodownload' preload='meatadata'>
-        <source src={ props.song.song_data.filename }/>
+      <audio className='song__bar' controls controlsList='nodownload' preload='metadata'>
+        <source src={ props.song.song_data }/>
       </audio>
     </div>
   );
