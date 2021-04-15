@@ -11,11 +11,12 @@ export const songRequest: ( action: action ) => any = async ( action: action ) =
   switch ( action ) {
     case 'fetchSongs':
       const fetchSongs = await api.get( '/songs' );
+      console.log(fetchSongs.data);
       return fetchSongs.data;
     case 'createSongs':
       const createSongs = await api.post( '/songs', 'createアクションへのリクエスト' );
       return createSongs.data;
     default:
       return null;
-  }
+  };
 };
