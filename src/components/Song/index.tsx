@@ -2,26 +2,29 @@ import React from 'react';
 import './style.scss';
 import TimelineIcon from '@material-ui/icons/Timeline';
 import BarChartIcon from '@material-ui/icons/BarChart';
+import { SongType } from '../../interfaces/SongType';
 
+interface Props {
+  song: SongType;
+};
 
-export const Song = () => {
+export const Song = ( props: Props ) => {
   return (
     <div className='song'>
       <div className='song__data'>
         <div className='key'>
           <TimelineIcon />
-          <span>Cmaj</span>
+          <span>{ props.song.key }</span>
         </div>
         <div className='bpm'>
           <BarChartIcon />
-          <span>128</span>
+          <span>{ props.song.bpm }</span>
         </div>
       </div>
-
-      <img className='song__image' src='logo512.png'/>
-      <h3 className='song__title'>AllOrNothing</h3>
-      <audio className='song__bar' controls controlsList='nodownload' preload='meatadata'>
-        <source src='AllOrNothing.mp3'/>
+      <img className='song__image' src={ props.song.image } alt='アルバムの画像'/>
+      <h3 className='song__title'>{ props.song.title }</h3>
+      <audio className='song__bar' controls controlsList='nodownload' preload='metadata'>
+        <source src={ props.song.song_data }/>
       </audio>
     </div>
   );
