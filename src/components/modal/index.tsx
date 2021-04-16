@@ -45,11 +45,11 @@ export const FormModal = ( props: Props ) => {
         </div>
         <div className='post-form__input-box'>
           <h4>Title</h4>
-          <input className='input-title' type='text'/>
+          <input className='input-title' type='text' placeholder='Sample Music'/>
           <h4>Key</h4>
-          <input className='input-key' type='text'/>
+          <input className='input-key' type='text' placeholder='Cmaj'/>
           <h4>Bpm</h4>
-          <input className='input-bpm' type='text'/>
+          <input className='input-bpm' type='text' placeholder='128sdfs'/>
         </div>
         <input className='post-form__submit' type='button' value='▶'/>
       </form>
