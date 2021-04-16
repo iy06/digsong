@@ -4,6 +4,7 @@ import { Footer } from '../../components/footer';
 import { SongSlider } from '../../components/songslider';
 import { songRequest } from '../../requests/songRequest'; // axiosのrequestファイル
 import { useDataReducer } from '../../hooks/useDataReducer'; // reducerのファイル
+import AddIcon from '@material-ui/icons/Add';
 import './style.scss';
 
 export const Home = () => {
@@ -29,6 +30,9 @@ export const Home = () => {
       <Header />
       <div className='main'>
         <SongSlider songs={ data.songsData }/>
+      </div>
+      <div className='post-btn'>
+        <AddIcon />
       </div>
       {/* Footerコンポーネント */}
       <Footer />
