@@ -28,39 +28,4 @@ body {
     justify-content: center;
     background-color: #bbbbbb;
   }
-  .post-btn {
-    width: 150px;
-    height: 150px;
-    position: absolute;
-    right: 100px;
-    bottom: 51px;
-    background-color: rgba(60, 60, 60, 0);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    .MuiSvgIcon-root {
-      font-size: 80px;
-      color: #000000c2;
-    }
-  }
-}
-// スマホ用メディアクエリ
-@media screen and (max-width: 767px) {
-  .wrapper {
-    .post-btn {
-      width: 80px;
-      height: 80px;
-      position: absolute;
-      right: 5px;
-      bottom: 87px;
-      background-color: rgba(60, 60, 60, 0);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      .MuiSvgIcon-root {
-        font-size: 60px;
-        color: #000000c2;
-      }
-    }
-  }
 }
