@@ -14,7 +14,7 @@ const customStyles = {
     backgroundColor: 'rgb(80, 80, 80, 0.8)',
   },
   content: {
-    height:     '75%',
+    height:     '70%',
     width:      '70%',
     margin:     'auto',
     background: '#cccccce0',

@@ -1,7 +1,8 @@
 .post-form {
+  height: 100%;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   flex-direction: column;
   &__title {
   }
@@ -38,7 +39,7 @@
     }
   }
   &__submit {
-    margin-top: 30px;
+    margin: 50px 0 30px 0;
     width: 300px;
     height: 30px;
     border: none;
