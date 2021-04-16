@@ -49,7 +49,7 @@ export const FormModal = ( props: Props ) => {
           <h4>Key</h4>
           <input className='input-key' type='text' placeholder='Cmaj'/>
           <h4>Bpm</h4>
-          <input className='input-bpm' type='text' placeholder='128sdfs'/>
+          <input className='input-bpm' type='text' placeholder='128bpm'/>
         </div>
         <input className='post-form__submit' type='button' value='▶'/>
       </form>
