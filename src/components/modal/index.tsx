@@ -21,6 +21,15 @@ const customStyles = {
     borderRadius: '0px',
   },
 };
+// ファイルが選択されたときにfilenameを表示する
+const addFileName = ( event: any ) => {
+  let fileNameEle = event.target.nextElementSibling;
+  if ( event.target.files.length !== 0 ) {
+    fileNameEle.innerHTML = event.target.files[0].name
+  } else {
+    fileNameEle.innerHTML = ''
+  };
+};
 
 export const FormModal = ( props: Props ) => {
   Modal.setAppElement( '#root' );
@@ -36,11 +45,13 @@ export const FormModal = ( props: Props ) => {
         <div className='post-form__file-box'>
           <label htmlFor="file-image">
             <CropOriginalIcon />
-            <input id='file-image' type='file'/>
+            <input onChange={ addFileName } id='file-image' type='file'/>
+            <p id='file-name' />
           </label>
           <label htmlFor="file-song">
             <MusicVideoIcon />
-            <input id='file-song' type='file'/>
+            <input onChange={ addFileName } id='file-song' type='file'/>
+            <p id='file-name' />
           </label>
         </div>
         <div className='post-form__input-box'>
