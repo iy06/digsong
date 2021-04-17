@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Modal from 'react-modal';
+// import { SongType } from '../../interfaces/SongType';
+// import { songRequest } from '../../requests/songRequest';
 import CropOriginalIcon from '@material-ui/icons/CropOriginal';
 import MusicVideoIcon from '@material-ui/icons/MusicVideo';
 import './style.scss';
@@ -8,7 +10,7 @@ interface Props {
   isOpen:      boolean;
   handleClose: () => void;
 };
-
+// モーダルのstyle
 const customStyles = {
   overlay: {
     backgroundColor: 'rgb(80, 80, 80, 0.8)',
