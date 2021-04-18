@@ -28,7 +28,7 @@ export const Home = () => {
     setIsOpen( true );
   };
   const handleClose = () => {
-    setIsOpen (false );
+    setIsOpen ( false );
   };
   // 初回ロード時に実行するuseEffect
   useEffect (() => {
