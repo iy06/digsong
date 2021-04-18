@@ -20,7 +20,7 @@ export const useDataReducer = (): [ Data, ( { type, payload }: dataAction ) => v
         title:     'Sample Music',
         key:       'Cmaj',
         bpm:       '120',
-        song_data: '',
+        song_data: 'sample.mp3',
         image:     'logo512.png',
       },
     ],
