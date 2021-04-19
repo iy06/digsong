@@ -10,10 +10,22 @@ const api = axiosBase.create({
 });
 
 export const songRequest: ( action: action, parameter?: parameter ) => any = async ( action: action, parameter?: parameter ) => {
+  console.log(parameter);
   if ( parameter ) {
     switch ( action ) {
       case 'createSongs':
-        const createSongs = await api.post( '/songs', parameter.data );
+        const params = new FormData();
+        params.append( 'title', parameter.data.title );
+        params.append( 'key', parameter.data.key );
+        params.append( 'bpm', parameter.data.bpm );
+        params.append( 'image', parameter.data.image );
+        params.append( 'song_data', parameter.data.song_data );
+        const createSongs = await api.post( '/songs',
+          params, {
+            headers: {
+              'content-type': 'multipart/form-data',
+            },
+          } );
         return createSongs.data;
       default:
         return null;
