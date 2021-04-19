@@ -53,14 +53,14 @@ export const FormModal = ( props: Props ) => {
   };
   const handleChangeImage = ( event: React.ChangeEvent<HTMLInputElement> ) => {
     console.log(event.target.value);
-    // if ( event.target && event.target.files) {
-      setImage( event.target.value );
-    // }
+    if ( event.target && event.target.files ) {
+      setImage( event.target.files[0] );
+    }
   };
   const handleChangeSongData = ( event: React.ChangeEvent<HTMLInputElement> ) => {
-    // if ( event.target && event.target.files) {
-      setSongData( event.target.value );
-    // }
+    if ( event.target && event.target.files ) {
+      setSongData( event.target.files[0] );
+    }
   };
   const onClickSubmit = async () => {
     const newData = {
@@ -71,6 +71,7 @@ export const FormModal = ( props: Props ) => {
       image:     image,
       song_data: song_data,
     };
+    console.log(image, song_data);
 
     try {
       const songs: SongType[] = await songRequest( 'createSongs', { data: newData } );
@@ -92,22 +93,22 @@ export const FormModal = ( props: Props ) => {
         <div className='post-form__file-box'>
           <label htmlFor="file-image">
             <CropOriginalIcon />
-            <input onChange={ (event) => { addFileName(event); handleChangeImage(event); } } value={ image } name='image' id='file-image' type='file'/>
+            <input onChange={ (event) => { addFileName(event); handleChangeImage(event); } } name='image' id='file-image' type='file'/>
             <p id='file-name' />
           </label>
           <label htmlFor="file-song">
             <MusicVideoIcon />
-            <input onChange={ (event) => { addFileName(event); handleChangeSongData(event); } } value={ song_data } name='song_data' id='file-song' type='file'/>
+            <input onChange={ (event) => { addFileName(event); handleChangeSongData(event); } } name='song_data' id='file-song' type='file'/>
             <p id='file-name' />
           </label>
         </div>
         <div className='post-form__input-box'>
           <h4>Title</h4>
-          <input onChange={ handleChangeTitle } value={ title } name={ title } className='input-title' type='text' placeholder='Sample Music'/>
+          <input onChange={ handleChangeTitle } name={ title } className='input-title' type='text' placeholder='Sample Music'/>
           <h4>Key</h4>
-          <input onChange={ handleChangeKey } value={ key } name={ key } className='input-key' type='text' placeholder='Cmaj'/>
+          <input onChange={ handleChangeKey } name={ key } className='input-key' type='text' placeholder='Cmaj'/>
           <h4>Bpm</h4>
-          <input onChange={ handleChangeBpm } value={ bpm } name={ bpm } className='input-bpm' type='text' placeholder='128bpm'/>
+          <input onChange={ handleChangeBpm } name={ bpm } className='input-bpm' type='text' placeholder='128bpm'/>
         </div>
         <input onClick={ onClickSubmit } className='post-form__submit' type='button' value='▶'/>
       </form>
