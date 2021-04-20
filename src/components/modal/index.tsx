@@ -20,13 +20,13 @@ const customStyles = {
     width:        '70%',
     margin:       'auto',
     background:   '#cccccce0',
-    borderRadius: '0px',
+    borderRadius: '18px',
   },
 };
 // ファイルが選択されたときにfilenameを表示する
 const addFileName = ( event: any ) => {
   let fileNameEle = event.target.nextElementSibling;
-  if ( event.target.files.length !== 0 ) {
+  if ( event.target && event.target.files ) {
     fileNameEle.innerHTML = event.target.files[0].name
   } else {
     fileNameEle.innerHTML = ''
