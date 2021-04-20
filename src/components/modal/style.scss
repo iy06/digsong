@@ -1,0 +1,73 @@
+.post-form {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  &__title {
+  }
+  &__file-box {
+    display: flex;
+    label {
+      width: 150px;
+      height: 100px;
+      margin: 5px;
+      border-radius: 5px;
+      border: dotted 1px #4e4e4e;
+      background-color: #6b6b6b8f;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      // flex-direction: column;
+      .MuiSvgIcon-root {
+        font-size: 30px;
+        color: #3c3c3cfa;
+      }
+      input[type='file'] {
+        display: none;
+      }
+      #file-name {
+        overflow: hidden;
+      }
+    }
+  }
+  &__input-box {
+    width: 300px;
+    text-align: center;
+    input[type='text'] {
+      width: 100%;
+      background-color: #0000;
+      border: none;
+      border-bottom: 1px solid #4e4e4e;
+      outline: none;
+    }
+  }
+  &__submit {
+    margin: 50px 0 30px 0;
+    width: 300px;
+    height: 30px;
+    border: none;
+    outline: none;
+    border-radius: 20px;
+    background-color: #d7d8d8;
+  }
+}
+// スマホ用メディアクエリ
+@media screen and (max-width: 767px) {
+  .post-form {
+    &__file-box {
+      display: flex;
+      label {
+        width: 110px;
+        height: 80px;
+      }
+    }
+    &__input-box {
+      width: 200px;
+      text-align: center;
+    }
+    &__submit {
+      width: 200px;
+    }
+  }
+}
