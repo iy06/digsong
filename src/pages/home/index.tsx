@@ -42,7 +42,7 @@ export const Home = () => {
   }, []);
   // dataが変わった時のuseEffect
   // useEffect(() => {
-  //   console.log( data, 'useEffect!' );
+  //   console.log(data);
   // }, [ data ]);
   return (
     <DataContext.Provider value={{ data, dispatch }}>
