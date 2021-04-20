@@ -10,7 +10,6 @@ const api = axiosBase.create({
 });
 
 export const songRequest: ( action: action, parameter?: parameter ) => any = async ( action: action, parameter?: parameter ) => {
-  console.log(parameter);
   if ( parameter ) {
     switch ( action ) {
       case 'createSongs':
