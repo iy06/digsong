@@ -26,7 +26,7 @@ const customStyles = {
 // ファイルが選択されたときにfilenameを表示する
 const addFileName = ( event: any ) => {
   let fileNameEle = event.target.nextElementSibling;
-  if ( event.target && event.target.files ) {
+  if ( event.target && event.target.files[0] ) {
     fileNameEle.innerHTML = event.target.files[0].name
   } else {
     fileNameEle.innerHTML = ''
@@ -36,6 +36,7 @@ const addFileName = ( event: any ) => {
 export const FormModal = ( props: Props ) => {
   Modal.setAppElement( '#root' );
   const { dispatch } = useContext( DataContext );
+
   const [ title, setTitle ] = useState<string>( '' );
   const [ key, setKey ] = useState<string>( '' );
   const [ bpm, setBpm ] = useState<string>( '' );
@@ -52,7 +53,6 @@ export const FormModal = ( props: Props ) => {
     setBpm( event.target.value );
   };
   const handleChangeImage = ( event: React.ChangeEvent<HTMLInputElement> ) => {
-    console.log(event.target.value);
     if ( event.target && event.target.files ) {
       setImage( event.target.files[0] );
     }
@@ -61,6 +61,13 @@ export const FormModal = ( props: Props ) => {
     if ( event.target && event.target.files ) {
       setSongData( event.target.files[0] );
     }
+  };
+  const resetState = () => {
+    setTitle('');
+    setKey('');
+    setBpm('');
+    setImage('');
+    setSongData('');
   };
   const onClickSubmit = async () => {
     const newData = {
@@ -71,15 +78,24 @@ export const FormModal = ( props: Props ) => {
       image:     image,
       song_data: song_data,
     };
-    console.log(image, song_data);
-
     try {
       const songs: SongType[] = await songRequest( 'createSongs', { data: newData } );
       dispatch( { type: 'songsUpdate', payload: { songs: songs } } )
+      resetState();
+      props.handleClose();
     } catch ( error ) {
-      console.log( error.message );
+      alert(
+        `
+        ${ error.response.data.song.image ? '画像' + error.response.data.song.image : '' }
+        ${ error.response.data.song.song_data ? '曲' + error.response.data.song.song_data : '' }
+        ${ error.response.data.song.title ? 'Title' + error.response.data.song.title : '' }
+        ${ error.response.data.song.key ? 'Key' + error.response.data.song.key : '' }
+        ${ error.response.data.song.bpm ? 'Bpm' + error.response.data.song.bpm : '' }
+        `
+      );
+      resetState();
+      props.handleClose();
     };
-    props.handleClose();
   };
 
   return (
@@ -104,11 +120,11 @@ export const FormModal = ( props: Props ) => {
         </div>
         <div className='post-form__input-box'>
           <h4>Title</h4>
-          <input onChange={ handleChangeTitle } name={ title } className='input-title' type='text' placeholder='Sample Music'/>
+          <input onChange={ handleChangeTitle } name='title' className='input-title' type='text' placeholder='Sample Music'/>
           <h4>Key</h4>
-          <input onChange={ handleChangeKey } name={ key } className='input-key' type='text' placeholder='Cmaj'/>
+          <input onChange={ handleChangeKey } name='key' className='input-key' type='text' placeholder='Cmaj'/>
           <h4>Bpm</h4>
-          <input onChange={ handleChangeBpm } name={ bpm } className='input-bpm' type='text' placeholder='128bpm'/>
+          <input onChange={ handleChangeBpm } name='bpm' className='input-bpm' type='text' placeholder='128bpm'/>
         </div>
         <input onClick={ onClickSubmit } className='post-form__submit' type='button' value='▶'/>
       </form>

@@ -33,7 +33,6 @@ export const songRequest: ( action: action, parameter?: parameter ) => any = asy
     switch ( action ) {
       case 'fetchSongs':
         const fetchSongs = await api.get( '/songs' );
-        console.log(fetchSongs.data);
         return fetchSongs.data;
       default:
         return null;
