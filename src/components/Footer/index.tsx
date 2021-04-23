@@ -7,7 +7,7 @@ export const Footer = () => {
   return (
     <footer className='footer'>
       <span className='footer__github'>
-        <a href='https://github.com/iy06/digsong'>
+        <a href='https://github.com/iy06'>
           <GitHubIcon />
         </a>
       </span>
