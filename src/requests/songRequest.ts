@@ -5,7 +5,7 @@ type action = 'fetchSongs' | 'createSongs';
 type parameter = { data: SongType };
 
 const api = axiosBase.create({
-  baseURL:      `${ process.env.REACT_APP_DIGSONG_API_URL }`,
+  baseURL:      `http://${ process.env.REACT_APP_DIGSONG_API_URL }/api`,
   responseType: 'json',
 });
 
