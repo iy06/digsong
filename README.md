@@ -30,6 +30,7 @@ DJや曲のキーやテンポを意識して、音楽を聴くことや曲を探
 ## バックエンド
 - Ruby (2.6.5)
 - Ruby on Rails (6.0.3.6)
+- API側リポジトリ (https://github.com/iy06/digsong_api)
 
 ## DBMS
 - MySQL (5.6)
