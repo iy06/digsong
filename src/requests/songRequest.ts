@@ -4,8 +4,10 @@ import { SongType } from '../interfaces/SongType';
 type action = 'fetchSongs' | 'createSongs';
 type parameter = { data: SongType };
 
+const API_URL = process.env.REACT_APP_DIGSONG_API_URL
+
 const api = axiosBase.create({
-  baseURL:      `${ process.env.REACT_APP_DIGSONG_API_URL }/api`,
+  baseURL:      `${ API_URL }/api`,
   responseType: 'json',
 });
 
