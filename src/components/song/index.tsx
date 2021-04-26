@@ -2,6 +2,7 @@ import React from 'react';
 import './style.scss';
 import TimelineIcon from '@material-ui/icons/Timeline';
 import BarChartIcon from '@material-ui/icons/BarChart';
+import CancelIcon from '@material-ui/icons/Cancel';
 import { SongType } from '../../interfaces/SongType';
 
 interface Props {
@@ -11,6 +12,10 @@ interface Props {
 export const Song = ( props: Props ) => {
   return (
     <div className='song'>
+      <div className='song__delete-btn'>
+        <CancelIcon />
+        <span>delete</span>
+      </div>
       <div className='song__data'>
         <div className='key'>
           <TimelineIcon />
