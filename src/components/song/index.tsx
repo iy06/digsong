@@ -1,21 +1,40 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './style.scss';
 import TimelineIcon from '@material-ui/icons/Timeline';
 import BarChartIcon from '@material-ui/icons/BarChart';
 import CancelIcon from '@material-ui/icons/Cancel';
 import { SongType } from '../../interfaces/SongType';
+import { songRequest } from '../../requests/songRequest';
+import { DataContext } from '../../pages/home';
 
 interface Props {
   song: SongType;
 };
 
 export const Song = ( props: Props ) => {
+  const { dispatch } = useContext( DataContext );
+
+  const handleDeleteBtn = async () => {
+    try {
+      if ( props.song ) {
+        const songs: SongType[] = await songRequest( 'deleteSongs', {
+          data: props.song,
+        });
+        dispatch({ type: 'songsUpdate', payload: { songs: songs } })
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
   return (
     <div className='song'>
-      <div className='song__delete-btn'>
-        <CancelIcon />
-        <span>delete</span>
-      </div>
+      { props.song !== undefined &&
+        <div className='song__delete-btn' onClick={ handleDeleteBtn }>
+          <CancelIcon />
+          <span>delete</span>
+        </div>
+      }
       <div className='song__data'>
         <div className='key'>
           <TimelineIcon />
