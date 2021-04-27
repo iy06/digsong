@@ -1,7 +1,7 @@
 import axiosBase from 'axios';
 import { SongType } from '../interfaces/SongType';
 
-type action = 'fetchSongs' | 'createSongs';
+type action = 'fetchSongs' | 'createSongs' | 'deleteSongs';
 type parameter = { data: SongType };
 
 const API_URL = process.env.REACT_APP_DIGSONG_API_URL
@@ -28,6 +28,9 @@ export const songRequest: ( action: action, parameter?: parameter ) => any = asy
             },
           } );
         return createSongs.data;
+      case 'deleteSongs':
+        const deleteSongs = await api.delete( `/songs/${ parameter.data.id }` )
+        return deleteSongs.data;
       default:
         return null;
     };
