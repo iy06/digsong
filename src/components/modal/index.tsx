@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { DataContext } from '../../pages/home';
 import { SongType } from '../../interfaces/SongType';
 import { songRequest } from '../../requests/songRequest';
@@ -9,6 +9,7 @@ import './style.scss';
 interface Props {
   isOpen:      boolean;
   handleClose: () => void;
+  selectSong?: SongType;
 };
 // モーダルのstyle
 const customStyles = {
@@ -35,11 +36,27 @@ const addFileName = ( event: any ) => {
 
 export const FormModal = ( props: Props ) => {
   Modal.setAppElement( '#root' );
+
+  // useEffect(() => {
+  //   console.log(title);
+  //   debugger
+  // }, [props]);
+
   const { dispatch } = useContext( DataContext );
 
-  const [ title, setTitle ] = useState<string>( '' );
-  const [ key, setKey ] = useState<string>( '' );
-  const [ bpm, setBpm ] = useState<string>( '' );
+  const [ title, setTitle ] = useState<string>(
+    (props.selectSong && props.selectSong.title) || ''
+    // props.selectSong ? props.selectSong.title : ''
+  );
+
+  const [ key, setKey ] = useState<string>(
+    (props.selectSong && props.selectSong.key) || ''
+  );
+
+  const [ bpm, setBpm ] = useState<string>(
+    (props.selectSong && props.selectSong.bpm) || ''
+  );
+
   const [ image, setImage ] = useState<any>( '' );
   const [ song_data, setSongData ] = useState<any>( '' );
 
@@ -63,6 +80,7 @@ export const FormModal = ( props: Props ) => {
     }
   };
   const resetState = () => {
+    console.log("reset")
     setTitle('');
     setKey('');
     setBpm('');
@@ -120,7 +138,7 @@ export const FormModal = ( props: Props ) => {
         </div>
         <div className='post-form__input-box'>
           <h4>Title</h4>
-          <input onChange={ handleChangeTitle } name='title' className='input-title' type='text' placeholder='Sample Music'/>
+          <input onChange={ handleChangeTitle } value={ title } name='title' className='input-title' type='text' placeholder='Sample Music'/>
           <h4>Key</h4>
           <input onChange={ handleChangeKey } name='key' className='input-key' type='text' placeholder='Cmaj'/>
           <h4>Bpm</h4>
