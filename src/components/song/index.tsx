@@ -9,9 +9,12 @@ import { DataContext } from '../../pages/home';
 
 interface Props {
   song: SongType;
+  handleOpen: () => void;
+  getSong: (id: number) => void;
 };
 
 export const Song = ( props: Props ) => {
+
   const { dispatch } = useContext( DataContext );
 
   const handleDeleteBtn = async () => {
@@ -45,7 +48,7 @@ export const Song = ( props: Props ) => {
           <span>{ props.song.bpm }</span>
         </div>
       </div>
-      <img className='song__image' src={ props.song.image } alt='アルバムの画像'/>
+      <img className='song__image' onClick={ () => { props.getSong(props.song.id) } } src={ props.song.image } alt='アルバムの画像'/>
       <h3 className='song__title'>{ props.song.title }</h3>
       <audio className='song__bar' controls controlsList='nodownload' preload='metadata'>
         <source src={ props.song.song_data }/>
