@@ -37,56 +37,65 @@ const addFileName = ( event: any ) => {
 export const FormModal = ( props: Props ) => {
   Modal.setAppElement( '#root' );
 
-  // useEffect(() => {
-  //   console.log(title);
-  //   debugger
-  // }, [props]);
+  // selectSongが存在する場合、stateを更新する。
+  useEffect(() => {
+    setTitle(
+      (props.selectSong && props.selectSong.title) || ''
+    );
+    setKey(
+      (props.selectSong && props.selectSong.key) || ''
+    );
+    setBpm(
+      (props.selectSong && props.selectSong.bpm) || ''
+    )
+    setImage(
+      (props.selectSong && props.selectSong.image) || ''
+    );
+    setSongData(
+      (props.selectSong && props.selectSong.song_data) || ''
+    );
+  }, [props.selectSong]);
 
-  const { dispatch } = useContext( DataContext );
-
-  const [ title, setTitle ] = useState<string>(
-    (props.selectSong && props.selectSong.title) || ''
-    // props.selectSong ? props.selectSong.title : ''
-  );
-
-  const [ key, setKey ] = useState<string>(
-    (props.selectSong && props.selectSong.key) || ''
-  );
-
-  const [ bpm, setBpm ] = useState<string>(
-    (props.selectSong && props.selectSong.bpm) || ''
-  );
-
-  const [ image, setImage ] = useState<any>( '' );
-  const [ song_data, setSongData ] = useState<any>( '' );
+  const { dispatch } = useContext(DataContext);
+  const [ title, setTitle ] = useState<string>('');
+  const [ key, setKey ] = useState<string>('');
+  const [ bpm, setBpm ] = useState<string>('');
+  const [ image, setImage ] = useState<any>('');
+  const [ song_data, setSongData ] = useState<any>('');
 
   const handleChangeTitle = ( event: React.ChangeEvent<HTMLInputElement> ) => {
     setTitle( event.target.value );
   };
+
   const handleChangeKey = ( event: React.ChangeEvent<HTMLInputElement> ) => {
     setKey( event.target.value );
   };
+
   const handleChangeBpm = ( event: React.ChangeEvent<HTMLInputElement> ) => {
     setBpm( event.target.value );
   };
+
   const handleChangeImage = ( event: React.ChangeEvent<HTMLInputElement> ) => {
     if ( event.target && event.target.files ) {
       setImage( event.target.files[0] );
     }
   };
+
   const handleChangeSongData = ( event: React.ChangeEvent<HTMLInputElement> ) => {
     if ( event.target && event.target.files ) {
       setSongData( event.target.files[0] );
     }
   };
+
+  // stateをリセットする関数
   const resetState = () => {
-    console.log("reset")
     setTitle('');
     setKey('');
     setBpm('');
     setImage('');
     setSongData('');
   };
+
   const onClickSubmit = async () => {
     const newData = {
       id:        0,
@@ -140,9 +149,9 @@ export const FormModal = ( props: Props ) => {
           <h4>Title</h4>
           <input onChange={ handleChangeTitle } value={ title } name='title' className='input-title' type='text' placeholder='Sample Music'/>
           <h4>Key</h4>
-          <input onChange={ handleChangeKey } name='key' className='input-key' type='text' placeholder='Cmaj'/>
+          <input onChange={ handleChangeKey } value={ key } name='key' className='input-key' type='text' placeholder='Cmaj'/>
           <h4>Bpm</h4>
-          <input onChange={ handleChangeBpm } name='bpm' className='input-bpm' type='text' placeholder='128bpm'/>
+          <input onChange={ handleChangeBpm } value={ bpm } name='bpm' className='input-bpm' type='text' placeholder='128bpm'/>
         </div>
         <input onClick={ onClickSubmit } className='post-form__submit' type='button' value='▶'/>
       </form>
