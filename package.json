@@ -31,7 +31,8 @@
     "eject": "react-scripts eject",
     "build-development": "dotenv -e .env.development react-scripts build",
     "build-staging": "dotenv -e .env.staging react-scripts build",
-    "build-production": "dotenv -e .env.production react-scripts build"
+    "build-production": "dotenv -e .env.production react-scripts build",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\""
   },
   "eslintConfig": {
     "extends": [
@@ -52,6 +53,9 @@
     ]
   },
   "devDependencies": {
-    "dotenv-cli": "^4.0.0"
+    "dotenv-cli": "^4.0.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "prettier": "^2.0.5"
   }
 }
