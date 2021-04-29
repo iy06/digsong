@@ -44,6 +44,10 @@ export const Home = () => {
     );
     handleOpen();
   };
+
+  const resetSelectSong = () => {
+    setSelectSong(undefined);
+  };
   // 初回ロード時に実行するuseEffect
   useEffect (() => {
     const fetchData = async () => {
@@ -73,7 +77,7 @@ export const Home = () => {
           selectSong={ selectSong }
         />
         {/* PostBtnコンポーネント */}
-        <PostBtn handleOpen={ handleOpen }/>
+        <PostBtn resetSelectSong={resetSelectSong} handleOpen={ handleOpen }/>
         {/* Footerコンポーネント */}
         <Footer />
       </div>
