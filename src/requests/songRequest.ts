@@ -1,7 +1,8 @@
 import axiosBase from 'axios';
 import { SongType } from '../interfaces/SongType';
 
-type action = 'fetchSongs' | 'createSongs' | 'deleteSongs';
+type action = 'fetchSongs' | 'createSongs' | 'deleteSongs' | 'updateSongs';
+
 type parameter = { data: SongType };
 
 const API_URL = process.env.REACT_APP_DIGSONG_API_URL
@@ -12,6 +13,7 @@ const api = axiosBase.create({
 });
 
 export const songRequest: ( action: action, parameter?: parameter ) => any = async ( action: action, parameter?: parameter ) => {
+
   if ( parameter ) {
     switch ( action ) {
       case 'createSongs':
@@ -28,6 +30,21 @@ export const songRequest: ( action: action, parameter?: parameter ) => any = asy
             },
           } );
         return createSongs.data;
+      case 'updateSongs':
+        const updateParams = new FormData();
+        updateParams.append( 'title', parameter.data.title );
+        updateParams.append( 'key', parameter.data.key );
+        updateParams.append( 'bpm', parameter.data.bpm );
+        updateParams.append( 'image', parameter.data.image );
+        updateParams.append( 'song_data', parameter.data.song_data );
+        const updateSongs = await api.put( `/songs/${parameter.data.id}`,
+          updateParams, {
+            headers: {
+              'content-type': 'multipart/form-data',
+            },
+          }
+        );
+        return updateSongs.data;
       case 'deleteSongs':
         const deleteSongs = await api.delete( `/songs/${ parameter.data.id }` )
         return deleteSongs.data;
