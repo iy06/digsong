@@ -39,6 +39,7 @@ export const FormModal = ( props: Props ) => {
 
   // selectSongが存在する場合、stateを更新する。
   useEffect(() => {
+    // 音楽データと画像データはURL化されているのでsetStateしない
     setTitle(
       (props.selectSong && props.selectSong.title) || ''
     );
@@ -48,12 +49,6 @@ export const FormModal = ( props: Props ) => {
     setBpm(
       (props.selectSong && props.selectSong.bpm) || ''
     )
-    setImage(
-      (props.selectSong && props.selectSong.image) || ''
-    );
-    setSongData(
-      (props.selectSong && props.selectSong.song_data) || ''
-    );
   }, [props.selectSong]);
 
   const { dispatch } = useContext(DataContext);
@@ -97,32 +92,44 @@ export const FormModal = ( props: Props ) => {
   };
 
   const onClickSubmit = async () => {
-    const newData = {
-      id:        0,
+    const requestData = {
+      id:        (props.selectSong ? props.selectSong.id : 0),
       title:     title,
       key:       key,
       bpm:       bpm,
       image:     image,
       song_data: song_data,
     };
-    try {
-      const songs: SongType[] = await songRequest( 'createSongs', { data: newData } );
-      dispatch( { type: 'songsUpdate', payload: { songs: songs } } )
-      resetState();
-      props.handleClose();
-    } catch ( error ) {
-      alert(
-        `
-        ${ error.response.data.song.image ? '画像' + error.response.data.song.image : '' }
-        ${ error.response.data.song.song_data ? '曲' + error.response.data.song.song_data : '' }
-        ${ error.response.data.song.title ? 'Title' + error.response.data.song.title : '' }
-        ${ error.response.data.song.key ? 'Key' + error.response.data.song.key : '' }
-        ${ error.response.data.song.bpm ? 'Bpm' + error.response.data.song.bpm : '' }
-        `
-      );
-      resetState();
-      props.handleClose();
-    };
+
+    if (props.selectSong !== undefined) {
+      try {
+        const songs: SongType[] = await songRequest('updateSongs', { data: requestData, });
+        dispatch({ type: 'songsUpdate', payload: { songs: songs } });
+        resetState();
+        props.handleClose();
+      } catch (error) {
+        console.log(error.message);
+      }
+    } else {
+      try {
+        const songs: SongType[] = await songRequest( 'createSongs', { data: requestData } );
+        dispatch( { type: 'songsUpdate', payload: { songs: songs } } )
+        resetState();
+        props.handleClose();
+      } catch ( error ) {
+        alert(
+          `
+          ${ error.response.data.song.image ? '画像' + error.response.data.song.image : '' }
+          ${ error.response.data.song.song_data ? '曲' + error.response.data.song.song_data : '' }
+          ${ error.response.data.song.title ? 'Title' + error.response.data.song.title : '' }
+          ${ error.response.data.song.key ? 'Key' + error.response.data.song.key : '' }
+          ${ error.response.data.song.bpm ? 'Bpm' + error.response.data.song.bpm : '' }
+          `
+        );
+        resetState();
+        props.handleClose();
+      };
+    }
   };
 
   return (
