@@ -36,7 +36,6 @@ const addFileName = ( event: any ) => {
 
 export const FormModal = ( props: Props ) => {
   Modal.setAppElement( '#root' );
-
   // selectSongが存在する場合、stateを更新する。
   useEffect(() => {
     // 音楽データと画像データはURL化されているのでsetStateしない
@@ -81,7 +80,6 @@ export const FormModal = ( props: Props ) => {
       setSongData( event.target.files[0] );
     }
   };
-
   // stateをリセットする関数
   const resetState = () => {
     setTitle('');
@@ -139,7 +137,6 @@ export const FormModal = ( props: Props ) => {
       style={ customStyles }
     >
       <form className='post-form'>
-        <h3 className='post-form__title'>Let's Post Song</h3>
         <div className='post-form__file-box'>
           <label htmlFor="file-image">
             <CropOriginalIcon />
