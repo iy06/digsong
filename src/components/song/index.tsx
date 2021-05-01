@@ -20,10 +20,13 @@ export const Song = ( props: Props ) => {
   const handleDeleteBtn = async () => {
     try {
       if ( props.song ) {
-        const songs: SongType[] = await songRequest( 'deleteSongs', {
-          data: props.song,
-        });
-        dispatch({ type: 'songsUpdate', payload: { songs: songs } })
+        let result = window.confirm(`${props.song.title}を削除しますか？`)
+        if (result) {
+          const songs: SongType[] = await songRequest( 'deleteSongs', {
+            data: props.song,
+          });
+          dispatch({ type: 'songsUpdate', payload: { songs: songs } })
+        }
       }
     } catch (error) {
       console.log(error.message);
