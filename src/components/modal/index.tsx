@@ -106,7 +106,17 @@ export const FormModal = ( props: Props ) => {
         resetState();
         props.handleClose();
       } catch (error) {
-        console.log(error.message);
+        alert(
+          `
+          ${ error.response.data.song.image ? '・画像' + error.response.data.song.image : '' }
+          ${ error.response.data.song.song_data ? '・曲' + error.response.data.song.song_data : '' }
+          ${ error.response.data.song.title ? '・Title' + error.response.data.song.title : '' }
+          ${ error.response.data.song.key ? '・Key' + error.response.data.song.key : '' }
+          ${ error.response.data.song.bpm ? '・Bpm' + error.response.data.song.bpm : '' }
+          `
+        );
+        resetState();
+        props.handleClose();
       }
     } else {
       try {
@@ -117,11 +127,11 @@ export const FormModal = ( props: Props ) => {
       } catch ( error ) {
         alert(
           `
-          ${ error.response.data.song.image ? '画像' + error.response.data.song.image : '' }
-          ${ error.response.data.song.song_data ? '曲' + error.response.data.song.song_data : '' }
-          ${ error.response.data.song.title ? 'Title' + error.response.data.song.title : '' }
-          ${ error.response.data.song.key ? 'Key' + error.response.data.song.key : '' }
-          ${ error.response.data.song.bpm ? 'Bpm' + error.response.data.song.bpm : '' }
+          ${ error.response.data.song.image ? '・画像' + error.response.data.song.image : '' }
+          ${ error.response.data.song.song_data ? '・曲' + error.response.data.song.song_data : '' }
+          ${ error.response.data.song.title ? '・Title' + error.response.data.song.title : '' }
+          ${ error.response.data.song.key ? '・Key' + error.response.data.song.key : '' }
+          ${ error.response.data.song.bpm ? '・Bpm' + error.response.data.song.bpm : '' }
           `
         );
         resetState();
