@@ -245,7 +245,7 @@ export const FormModal = (props: Props) => {
             name="bpm"
             className="input-bpm"
             type="text"
-            placeholder="128bpm"
+            placeholder="128"
           />
         </div>
         <input
