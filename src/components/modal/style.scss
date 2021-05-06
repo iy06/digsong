@@ -4,14 +4,12 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  &__title {
-  }
   &__file-box {
     display: flex;
     label {
       width: 150px;
       height: 100px;
-      margin: 5px;
+      margin: 0 5px 0 5px;
       border-radius: 5px;
       border: dotted 1px #4e4e4e;
       background-color: #6b6b6b8f;
@@ -43,7 +41,7 @@
     }
   }
   &__submit {
-    margin: 50px 0 30px 0;
+    margin-top: 50px;
     width: 300px;
     height: 30px;
     border: none;
